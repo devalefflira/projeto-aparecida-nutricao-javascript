@@ -43,4 +43,4 @@ function calculaImc(peso, altura) {
   return imc.toFixed(2);
 }
 
-var botaoAdicionar = document.querySelector('#adicionar-paciente');
+
