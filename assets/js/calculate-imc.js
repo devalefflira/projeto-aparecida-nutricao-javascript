@@ -37,6 +37,10 @@ for (var i = 0; i < pacientes.length; i++) {
   }
 }
 
+function validaPeso() {
+  
+}
+
 function calculaImc(peso, altura) {
   var imc = 0;
   imc = peso / (altura * altura);
