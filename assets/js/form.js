@@ -17,13 +17,16 @@ botaoAdicionar.addEventListener('click', function (event) {
   var tabela = document.querySelector('#tabela-pacientes');
 
   tabela.appendChild(pacienteTr);
-  // Apaga os dados após a inserção dos dados na tabela
+  // Apaga os dados após a inserção válida dos dados na tabela
   form.reset();
+  var mensagensErro = document.querySelector('#mensagens-erro');
+  mensagensErro.innerHTML = '';
 });
 
 // Exibir mensagem de erro. Cria uma <li>, dentro da <ul id="mensagens-erro"> no index.html, com a mensagem de erro
 function exibeMensagensDeErro(erros) {
   var ul = document.querySelector('#mensagens-erro');
+  ul.innerHTML = '';
   erros.forEach(function (erro) {
     var li = document.createElement('li');
     li.textContent = erro;
@@ -70,11 +73,19 @@ function validaPaciente(paciente) {
   var erros = [];
 
   if (paciente.nome.length == 0) {
-    erros.push('Campo nome não pode ser em branco.');
+    erros.push(`Campo "Nome" não pode ser em branco.`);
+  }
+
+  if (paciente.peso.length == 0) {
+    erros.push(`Campo "Peso" deve ser preenchido.`);
   }
 
   if (!validaPeso(paciente.peso)) {
     erros.push('Peso é inválido!');
+  }
+
+  if (paciente.altura.length == 0) {
+    erros.push(`Campo "Altura" deve ser preenchido.`);
   }
 
   if (!validaAltura(paciente.altura)) {
@@ -82,7 +93,7 @@ function validaPaciente(paciente) {
   }
 
   if (paciente.gordura.length == 0) {
-    erros.push('Campo gordura não pode ser em branco.');
+    erros.push(`Campo "Gordura" deve ser preenchido.`);
   }
 
   return erros;
