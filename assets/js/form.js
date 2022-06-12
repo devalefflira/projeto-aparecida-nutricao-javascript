@@ -6,12 +6,30 @@ botaoAdicionar.addEventListener('click', function (event) {
   var form = document.querySelector('#form-adiciona');
   var paciente = obtemPacienteDoFormulario(form);
   var pacienteTr = montaTr(paciente);
+  var erros = validaPaciente(paciente);
+
+  if (erros.length > 0) {
+    exibeMensagensDeErro(erros);
+    return;
+  }
+
+  // Adiciona o paciente na tabela
   var tabela = document.querySelector('#tabela-pacientes');
 
   tabela.appendChild(pacienteTr);
   // Apaga os dados após a inserção dos dados na tabela
   form.reset();
 });
+
+// Exibir mensagem de erro. Cria uma <li>, dentro da <ul id="mensagens-erro"> no index.html, com a mensagem de erro
+function exibeMensagensDeErro(erros) {
+  var ul = document.querySelector('#mensagens-erro');
+  erros.forEach(function (erro) {
+    var li = document.createElement('li');
+    li.textContent = erro;
+    ul.appendChild(li);
+  });
+}
 
 // Obtém os dados dos pacientes do formulário
 function obtemPacienteDoFormulario(form) {
@@ -48,5 +66,24 @@ function montaTd(dado, classe) {
 }
 
 // Validar o formulário
+function validaPaciente(paciente) {
+  var erros = [];
 
-function validaPaciente(paciente) {}
+  if (paciente.nome.length == 0) {
+    erros.push('Campo nome não pode ser em branco.');
+  }
+
+  if (!validaPeso(paciente.peso)) {
+    erros.push('Peso é inválido!');
+  }
+
+  if (!validaAltura(paciente.altura)) {
+    erros.push('Altura inválida!');
+  }
+
+  if (paciente.gordura.length == 0) {
+    erros.push('Campo gordura não pode ser em branco.');
+  }
+
+  return erros;
+}

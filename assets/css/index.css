@@ -142,3 +142,8 @@ button:disabled {
   color: #ffffff;
   font-weight: bold;
 }
+
+#mensagens-erro {
+  color: #ff0000;
+  font-weight: bold;
+}
