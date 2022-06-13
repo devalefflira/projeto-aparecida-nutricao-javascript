@@ -46,7 +46,7 @@ function obtemPacienteDoFormulario(form) {
   return paciente;
 }
 
-// Cria uma tr
+// Cria uma tr na tabela
 function montaTr(paciente) {
   var pacienteTr = document.createElement('tr');
   pacienteTr.classList.add('paciente');
@@ -60,7 +60,7 @@ function montaTr(paciente) {
   return pacienteTr;
 }
 
-// Cria um td
+// Cria um td na tabela
 function montaTd(dado, classe) {
   var td = document.createElement('td');
   td.textContent = dado;
@@ -68,7 +68,7 @@ function montaTd(dado, classe) {
   return td;
 }
 
-// Validar o formulário
+// Função para validar os dados inseridos no formulário
 function validaPaciente(paciente) {
   var erros = [];
 
